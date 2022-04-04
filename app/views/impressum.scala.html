@@ -1,0 +1,32 @@
+@(LogStatus: Integer)
+    @impressumContent = {
+        <div class="container-main">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Impressum</h1>
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                    Diese Webseite ist eine Projektarbeit von fünf MCS-Studenten (3. Semester) an der Julius-Maximilians-Universität Würzburg.<br>
+                            Gruppenmitglieder: Leonhard Hepp, Aaron Lutz, David Sauer, Michael Weber, Gregor Winkler<br>
+                            Jahr: <em>2018</em>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @if(LogStatus == 1) {
+        @main_logged_in("CancerQuiz: Impressum") {
+            @impressumContent
+        } {
+
+        }
+    } else {
+        @main_logged_out("CancerQuiz: Impressum") {
+            @impressumContent
+        } {
+
+        }
+    }

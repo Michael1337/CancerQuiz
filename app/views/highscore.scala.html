@@ -1,0 +1,47 @@
+@(Users: List[model.db.UserFactory#User], LoggedInUserID: Int)
+    @main_logged_in("CancerQuiz: Highscore") {
+        <div class="container-main">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Highscore</h1>
+                    <table id="highscoreTable" class="table table-striped table-bordered table-condensed table-highscore">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Benutzername</th>
+                                <th>Punkte (Gesamt)</th>
+                                <th>Punkte (Rekord)</th>
+                                <th>Aktueller Rang</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @for(user <- Users) {
+                            @if(LoggedInUserID == user.getUser_id) {
+                                <tr class="table-highscore__user">
+                                    <td class="count"></td>
+                                    <td><a href="../user" >@user.getName</a></td>
+                                    <td>@user.getPoints_overall</td>
+                                    <td>@user.getPoints_max</td>
+                                    <td>@user.getRank</td>
+                                </tr>
+                            } else {
+                                <tr>
+                                    <td class="count"></td>
+                                    <td><a href="../users/@user.getName">@user.getName</a></td>
+                                    <td>@user.getPoints_overall</td>
+                                    <td>@user.getPoints_max</td>
+                                    <td>@user.getRank</td>
+                                </tr>
+                            }
+                        }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    } {
+        <script src="@routes.Assets.versioned("javascripts/jquery.dataTables.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/dataTables.bootstrap.min.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.versioned("javascripts/highscore.js")" type="text/javascript"></script>
+    }
+

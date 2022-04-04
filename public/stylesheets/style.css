@@ -1,0 +1,547 @@
+/*------*/
+/* FONT */
+/*------*/
+
+@font-face {
+    font-family: "Nunito";
+    src: url(../fonts/Nunito-Regular.ttf);
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+}
+
+/*--------------------*/
+/* BOOTSTRAP OVERRIDE */
+/*--------------------*/
+
+h1 {
+    margin-top: 10px;
+}
+
+.img-responsive {
+    background-color: #ffffff;
+}
+
+.navbar-default {
+    background-color: #2ECCFA;
+    border-radius: 0px;
+
+}
+
+.navbar {
+    border: 0;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #FFFFFF;
+}
+
+.navbar-nav {
+    float: none;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+
+.navbar-nav > li {
+    display: inline-block;
+    float: none;
+}
+
+/*---------------------*/
+/* BOOTSTRAP EXTENSION */
+/*---------------------*/
+
+.list-group--items-center > .list-group-item {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+    .row.equal {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+.equal > div[class*='col-'] {
+    display: flex;
+    flex-direction: column;
+}
+
+/*---------*/
+/* GENERAL */
+/*---------*/
+
+#progressCircle {
+    margin: auto;
+}
+
+.btnExtraMargin {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.button-cancer-default {
+    background-color: white;
+    color: black;
+    border: 2px solid #2ECCFA;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-cancer-small {
+    background-color: white;
+    color: black;
+    border: 2px solid #2ECCFA;
+    padding: 5px 8px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-cancer-small:hover {
+    background-color: #2ECCFA;
+    color: white;
+}
+
+.button-cancer-small:disabled {
+    background-color: white !important;
+    color: #606060 !important;
+    text-decoration: line-through;
+}
+
+.warnButton {
+    border: 2px solid red;
+
+}
+
+.warnButton:hover {
+    background-color: red !important;
+}
+
+.button-cancer-default:hover {
+    background-color: #2ECCFA;
+    color: white;
+}
+
+.width100 {
+    width: 100%;
+}
+
+.container-main {
+    margin: 0 20px 0 20px;
+    text-align: center;
+}
+
+body {
+    background-color: #FFFFFF;
+    background-image: url("../images/bg.jpg");
+}
+
+.logo {
+    background-color: #00BFFF;
+}
+
+.headH1 {
+    text-align: center;
+    color: black;
+    font-weight: bold;
+}
+
+.navItem {
+    min-width: 100px;
+}
+
+.noPadding {
+    padding-top: 0px !important;
+    padding-bottom: 0px !important;
+}
+
+.h3NoMarginTop {
+    margin-top: 0px;
+}
+
+/*----------*/
+/*  FOOTER  */
+/*----------*/
+
+html, body {
+    height: 100%;
+}
+
+#wrap {
+    min-height: 100%;
+}
+
+#main {
+    overflow: auto;
+    padding-bottom: 50px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+    position: relative;
+    margin-top: -50px; /* negative value of footer height */
+    height: 50px;
+    clear: both;
+}
+
+/*-----------*/
+/*  Profile  */
+/*-----------*/
+
+.profile_content {
+    background-color: rgba(256, 256, 256, 0.3);
+    border: #2ECCFA 2px solid;
+    border-radius: 2px;
+    padding: 24px;
+    height: 300px;
+    margin-right: 10px;
+}
+
+/*--------*/
+/*  Game  */
+/*--------*/
+
+.game-finish__game-points {
+    font-weight: bold;
+}
+
+.game-finish__user-points {
+    font-weight: bold;
+}
+
+.game-finish__new-rank {
+    color: #2ECCFA;
+    font-weight: bold;
+}
+
+.game-finish__next-rank {
+    font-weight: bold;
+}
+
+/*--------*/
+/*  Quiz  */
+/*--------*/
+
+.button-cancer-answer {
+    /* min-height: 80px; Use this for min height of two lines. Makes single line answers fat, but makes two line answers nicer... */
+    width: 100%;
+    background-color: white;
+    color: black;
+    border: 2px solid #2ECCFA;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.button-cancer-answer:hover {
+    background-color: #2ECCFA;
+    color: white;
+}
+
+.answer--correct {
+    background-color: #00fa56;
+}
+
+.answer--correct:hover {
+    background-color: #00fa56;
+}
+
+.answer--wrong {
+    background-color:  #fa3600;
+}
+
+.answer--wrong:hover {
+    background-color: #fa3600;
+}
+
+#toNextQuestion {
+    display: none;
+}
+
+.absoluteDiv {
+    position: absolute;
+}
+
+.width-max-content {
+    width: -moz-max-content; /* Firefox/Gecko */
+    width: max-content; /* Chrome */
+}
+
+.progressBar {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.progressBarText {
+    position: absolute;
+    width: 100%;
+    left: 0%;
+}
+
+.ui-progressbar-value {
+    background: #2ECCFA;
+    margin: 0 !important;
+}
+
+/*---------*/
+/* CLICKER */
+/*---------*/
+
+#clicker__container {
+    margin: auto;
+    position: relative;
+    width: 780px;
+    height: 600px;
+    border: 5px solid black;
+    background-image: url("../images/bloodstream.jpg");
+}
+
+.clicker-container__info {
+    background-color: white;
+    border-radius: 10px;
+    width: fit-content;
+    margin: auto;
+    padding: 5px;
+}
+
+#end_box {
+    display: none;
+}
+
+.clicker-explanation__cell {
+    font-size: 1.2em;
+    border: 1px solid black;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+
+.clicker__info {
+    border: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.clicker-info__item {
+    font-size: 24px;
+    padding: 5px;
+    text-align: left;
+}
+
+.clicker-info__item--red {
+    color: red;
+}
+
+.clicker__img--info-bad {
+    background-image: url("../images/krebszelle_bad.png");
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.clicker__img--info-good {
+    background-image: url("../images/krebszelle_good.png");
+    height: 100px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.clicker__img--good {
+    background-image: url("../images/krebszelle_good.png");
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.clicker__img--bad {
+    background-image: url("../images/krebszelle_bad.png");
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.clicker__img--worse {
+    background-image: url("../images/krebszelle_worse.png");
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/*--------*/
+/* MEMORY */
+/*--------*/
+
+#memory_board {
+    background-color: rgba(256, 256, 256, 0.3);
+    border: #2ECCFA 2px solid;
+    border-radius: 2px;
+    width: 630px;
+    height: 510px;
+    padding: 24px;
+    margin: 0 auto;
+    align-content: center;
+    align-items: center;
+    perspective: 800px;
+}
+
+.memory_board_single {
+    width: 95px;
+    height: 95px;
+    float: left;
+    margin: 10px;
+    text-align: center;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s;
+}
+
+.memory_board_single > img {
+    margin: 0;
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    box-shadow: 3px 3px 8px black;
+}
+
+.displayedCard {
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    position: relative;
+}
+
+.hiddenCard {
+    display: none;
+    transform: rotateY(180deg);
+}
+
+.flipped {
+    transform: rotateY(180deg);
+}
+
+.card_cursor {
+    cursor: pointer;
+}
+
+/*-------*/
+/* FIGHT */
+/*-------*/
+
+.fightHiddenContent {
+    display: none;
+}
+
+.leftDiv {
+    text-align: left;
+}
+
+.rightDiv {
+    text-align: right;
+}
+
+.autoWidthInline {
+    width: auto !important;
+    display: inline !important;
+}
+
+#fightBottomPart {
+    min-height: 50px;
+}
+
+/*-----------*/
+/* HIGHSCORE */
+/*-----------*/
+
+.table-highscore {
+    background-color: #FFFFFF;
+    counter-reset: section;
+}
+
+.count:before {
+    counter-increment: section;
+    content: counter(section);
+}
+
+.table-highscore__user {
+    background-color: #2ECCFA !important;
+    color: #FFFFFF;
+}
+
+.table-highscore__user a {
+    color: #FFFFFF;
+}
+
+/*---------*/
+/* MESSAGE */
+/*---------*/
+.message {
+    margin-bottom: 5px;
+    border: 4px solid #2ECCFA;
+    border-radius: 4px;
+}
+
+.message--unread {
+    color: white;
+    font-style: italic;
+}
+
+.message__head {
+    text-align: left;
+    padding: 10px;
+    background-color: #2ECCFA;
+    cursor: pointer;
+}
+
+.message__title {
+}
+
+.message__sender {
+}
+
+.message__time {
+
+}
+
+.message__body {
+    display: none;
+    background-color: #FFFFFF;
+
+}
+
+.message-body__text {
+    text-align: left;
+    padding: 10px;
+    white-space: pre-wrap;
+    background-color: #FFFFFF;
+}
+
+textarea.message-textarea {
+    width: 450px;
+    height: 150px;
+}

@@ -1,0 +1,39 @@
+@import java.time.format.DateTimeFormatter
+@(Friends: List[model.friends.FriendsFactory#Friend], Requests: List[model.db.UserFactory#User])
+    @main_logged_in("CancerQuiz: Freunde") {
+        <div class="container-main">
+            <div class="row">
+                <div class="col-xs-12">
+                    <h1>Freunde</h1>
+
+                    @if(!Requests.isEmpty) {
+                        <h3>Freundschaftsanfragen:</h3>
+                        @for(request <- Requests) {
+                            <p><span class="glyphicon glyphicon-user"></span>
+                                <a href="users/@request.getName">@request.getName</a></p>
+                        }
+                    }
+
+                    @if(Friends.isEmpty) {
+                        <p>
+                            Du hast noch keine Freunde :(<br>
+                            Um jemandem deine Freundschaft anzubieten, musst Du über den <a href="/highscore">
+                            Highscore</a> auf Sein/Ihr Profil gehen.
+                        </p>
+                    } else {
+                        <h3>Deine Freundschaften:</h3>
+                        @for(friend <- Friends) {
+                            <p><span class="glyphicon glyphicon-user"></span>
+                                <a href="users/@friend.getUser.getName">@friend.getUser.getName</a>
+                                <br>
+                                Freunde seit: @friend.getFriends_since.format(DateTimeFormatter.ofPattern("dd.MM.yyyy"))
+                                <br></p>
+                        }
+                        <br>
+                        <p>Finde weitere Freunde im <a href="/highscore">Highscore</a>.</p>
+                    }
+                </div>
+            </div>
+        </div>
+    } {
+    }

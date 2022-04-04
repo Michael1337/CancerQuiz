@@ -1,0 +1,60 @@
+@*
+* This template is called from the `index` template. This template
+* handles the rendering of the page header and body tags. It takes
+* two arguments, a `String` for the title of the page and an `Html`
+* object to insert into the body of the page.
+*@
+@(title: String)(content: Html)(additionalScripts: Html)
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        @* Here's where we render the page title `String`. *@
+    <title>@title</title>
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/dataTables.bootstrap.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/jquery-ui.min.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/bootstrap-xl.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/jquery-confirm.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/circle.css")">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/style.css")">
+    <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
+    </head>
+    <body>
+        <div id="wrap">
+            <div id="main">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <ul class="nav navbar-nav">
+                            <li class="navItem"><a href="@routes.LoginController.logout()">Logout</a></li>
+                            <li class="navItem"><a href="@routes.UserController.index()">Profil</a></li>
+                            <li class="navItem"><a href="@routes.GameController.index()">Spiel</a></li>
+                            <li class="navItem"><a href="@routes.UserController.index()" class="noPadding"><img src="../assets/images/logo-f-s.png" alt="CancerQuiz-Logo"></a></li>
+                            <li class="navItem"><a href="@routes.FriendsController.showFriends()">Freunde</a></li>
+                            <li class="navItem"><a href="@routes.MessagesController.showMessages()">Nachrichten</a></li>
+                            <li class="navItem"><a href="@routes.HighscoreController.index()">Highscore</a></li>
+                        </ul>
+                    </div>
+                </nav>
+                @* And here's where we render the `Html` object containing
+                * the page content. *@
+                @content
+
+                <script src="@routes.Assets.versioned("javascripts/jquery-3.2.1.min.js")" type="text/javascript"></script>
+                <script src="@routes.Assets.versioned("javascripts/jquery-ui.min.js")" type="text/javascript"></script>
+                <script src="@routes.Assets.versioned("javascripts/jquery-confirm.js")" type="text/javascript"></script>
+
+                @additionalScripts
+            </div>
+        </div>
+        <footer class="footer navbar-default">
+            <div class="container-fluid">
+                <ul class="nav navbar-nav">
+                    <li class="navItem">
+                        <a href="@routes.HomeController.impressum()">Impressum</a>
+                    </li>
+                </ul>
+            </div>
+        </footer>
+    </body>
+</html>

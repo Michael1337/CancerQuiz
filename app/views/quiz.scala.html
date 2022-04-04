@@ -1,0 +1,77 @@
+@(Game_points: Integer, Question: model.game.quiz.QuestionFactory#Question, Answers: List[model.game.quiz.Answer], Category: Array[String], Score: Integer, Progress: Integer, NumberOfQuestions: Integer, GameRound: Integer)
+@main_logged_in("CancerQuiz: Quiz") {
+    <div class="container-main">
+
+        <div class="row">
+            <div class="col-xs-12 col-sm-2">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="width-max-content">
+                            <p><b>Spieletappe</b></p>
+                            <div id="progressCircle" class="c100 p@(GameRound * 100 / 6) small">
+                                <span>@GameRound/6</span>
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <p class="text-left">Punktzahl: <span id="gameScoreCalc">@(Game_points + Score)</span></p>
+                        <input id="gameScore" type="hidden" value="@Game_points">
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-8">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <h1>Quiz: @Category(1)</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-offset-1 col-xs-10 col-sm-offset-3 col-sm-6 col-md-offset-4 col-md-4">
+                        <div id="progressBar" class="progressBar">
+                            <span class="progressBarText">
+                                Frage @Progress von @NumberOfQuestions, bisher <span id="currentScore">@Score</span>
+                                richtig.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+                <h3>@Question.getQuestion_text</h3>
+                <input type="hidden" id="questionId" value="@Question.getQuestion_id">
+                <input type="hidden" id="categoryKind" value="@Category(0)">
+                <input type="hidden" id="progress" value="@((Progress * 100) / NumberOfQuestions)">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+                <div class="row equal">
+                @for(answer <- Answers) {
+                    <div class="col-xs-12 col-md-6">
+                        <button type="button" class="button-cancer-answer answer" id=@answer.getAnswer_id>@answer.getAnswer_text</button>
+                    </div>
+                }
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <div id="answer-feedback">
+            <span id="answer-feedback__text"></span><br><br>
+            <button class="button-cancer-default" id="toNextQuestion">Weiter</button>
+            <br><br>
+        </div>
+
+        @helper.CSRF.formField
+    </div>
+} {
+    <script src="@routes.Assets.versioned("javascripts/quiz.js")" type="text/javascript"></script>
+}

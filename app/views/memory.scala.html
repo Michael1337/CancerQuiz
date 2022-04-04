@@ -1,0 +1,66 @@
+@import java.util
+@(Quiz_points: Integer, CardDeck: util.List[model.game.minigames.memory.MemoryFactory#Card])
+    @import java.math.BigInteger; var i = 1;
+    @main_logged_in("CancerQuiz: Memory") {
+        <div class="container-main">
+
+            <div class="row">
+                <div class="col-xs-12 col-sm-2">
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <div class="width-max-content">
+                                <p><b>Spieletappe</b></p>
+                                <div id="progressCircle" class="c100 p33 small">
+                                    <span>2/6</span>
+                                    <div class="slice">
+                                        <div class="bar"></div>
+                                        <div class="fill"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12">
+                            <p class="text-left">Punktzahl: @Quiz_points</p>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-xs-12 col-sm-8">
+                    <h1>Memory</h1>
+                    <p>Finde alle 10 gleichen Krebszellen indem du immer 2 Karten umdrehst!</p>
+
+                    <div id="memory_stats">
+                        <p>Gefundene Paare: <strong><span id="foundPairs">0</span></strong> -
+                            Benötigte Züge: <strong><span id="neededMoves">0</span></strong></p>
+                    </div>
+
+                    <div><button id="startMemory" class="button-cancer-default" title="Klicke hier um die Karten zu mischen und das Spiel zu starten!">
+                        Memory starten</button>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div id="memory_board">
+            @for(card <- CardDeck) {
+                <div data-imgid="@card.getCardId" class="memory_board_single" id="@i">
+                    <img id="frontImg" class="displayedCard" title="@card.getCardName" alt="@card.getCardName" src="@card.getCardPath">
+                    <img id="coverImg" class="hiddenCard" src="../assets/images/memorycards/Cover.jpg">
+                </div>
+                @(i = i + 1)
+            }
+            </div>
+
+            <br>
+            <div >
+                <button id="endMemory" class="button-cancer-default" title="Beim Überspringen erhältst Du keinen Multiplikator für Deine zuvor gesammelten Punkte!">
+                    Memory überspringen</button>
+            </div>
+            <br>
+        </div>
+
+        @helper.CSRF.formField
+    } {
+        <script src="@routes.Assets.versioned("javascripts/memory.js")" type="text/javascript"></script>
+    }
+

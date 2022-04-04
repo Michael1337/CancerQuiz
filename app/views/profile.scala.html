@@ -1,0 +1,25 @@
+@(User: model.db.UserFactory#User, hasRequest: Boolean, hasSentRequest: Boolean)
+@main_logged_in("CancerQuiz: Anderer Nutzer") {
+    <div class="container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>@User.getName</h1>
+                <p>Noch nicht Dein Freund.</p>
+                @if(hasRequest) {
+                    <button class="button-cancer-default" id="acceptFriend" data-userid="@User.getUser_id">
+                        <span class="glyphicon glyphicon-ok"></span> Freundschaftsanfrage annehmen
+                    </button>
+                } else if(hasSentRequest) {
+                Du hast diesem Nutzer Deine Freundschaft angeboten.
+                } else {
+                <button class="button-cancer-default" id="requestFriend" data-userid="@User.getUser_id">
+                    <span class="glyphicon glyphicon-plus"></span> Freundschaftsanfrage senden
+                </button>
+                }
+                @helper.CSRF.formField
+            </div>
+        </div>
+    </div>
+} {
+    <script src="@routes.Assets.versioned("javascripts/friends.js")" type="text/javascript"></script>
+}

@@ -1,0 +1,54 @@
+@import java.time.format.DateTimeFormatter
+@(User: model.db.UserFactory#User, Rank: model.db.RankFactory#Rank, UnreadMessages: Integer, GameStats: model.game.GameStatsFactory#GameStatsGroup)
+@main_logged_in("CancerQuiz: Profil") {
+    <div class="container-main">
+        <div class="row">
+            <h1>Hey @User.getName, das ist Dein Profil!</h1>
+            <br>
+            @if(UnreadMessages > 0) {
+                <p><span class="glyphicon glyphicon-envelope"></span> Du hast <strong>@UnreadMessages</strong>
+                    ungelesene <a href="/messages">Nachricht(en)</a>.</p>
+                <br>
+                }
+        </div>
+
+        <div class="row">
+            <div class ="profile_content col-sm-offset-3 col-sm-2">
+                <h3 class="h3NoMarginTop">@User.getName</h3>
+                <img src="../assets/images/avatar_small.png">
+            </div>
+
+            <div class="profile_content col-sm-2">
+                <h3 class="h3NoMarginTop">Dein Rang</h3><br>
+                <p> <span class = "glyphicon glyphicon-education"></span> @Rank.getName_thisRank</p>
+                <p> <span class = "glyphicon glyphicon-stats"></span> @User.getPoints_overall Rangpunkte</p>
+                <h3>Nächster Rang</h3><br>
+                <p> <span class = "glyphicon glyphicon-circle-arrow-right"></span> @Rank.getName_nextRank</p>
+                @if(Rank.getMinPoints_nextRank - User.getPoints_overall > 0) {
+                    <div id="progressBar" class="progressBar">
+                        <span class="progressBarText">
+                            Es fehlen noch @(Rank.getMinPoints_nextRank - User.getPoints_overall) Punkte</span>
+                    </div>
+                    <input type="hidden" id="progress" value="@((User.getPoints_overall - Rank.getMinPoints_thisRank) * 100 / (Rank.getMinPoints_nextRank - Rank.getMinPoints_thisRank))">
+                    }
+            </div>
+
+            <div class = "profile_content col-sm-2">
+                <h3 class="h3NoMarginTop">Deine Statistik</h3><br><br>
+                @if(GameStats == null) {
+                    <p>Du hast noch kein Spiel vollständig gespielt.</p>
+                } else {
+                    <p><span class = "glyphicon glyphicon-knight"></span> @GameStats.getCount Spiel(e)</p>
+                    <p><span class = "glyphicon glyphicon-ban-circle"></span>
+                        @String.format("%.2f".format(GameStats.getAverage)) Punkte im Durchschnitt</p>
+                    <p><span class = "glyphicon glyphicon-circle-arrow-up"></span>
+                        @GameStats.getGameMostPoints.getPoints Punkte als Rekord <br>
+                        (am @GameStats.getGameMostPoints.getDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")))</p>
+                }
+            </div>
+        </div>
+
+    </div>
+} {
+    <script src="@routes.Assets.versioned("javascripts/profile_self.js")" type="text/javascript"></script>
+}

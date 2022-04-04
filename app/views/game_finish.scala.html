@@ -1,0 +1,27 @@
+@(GameData: model.game.GameFactory#Game, User: model.db.UserFactory#User, OldRank: model.db.RankFactory#Rank, NewRank: model.db.RankFactory#Rank)
+    @main_logged_in("CancerQuiz: Spiel") {
+        <div class="container-main">
+            <div class="row">
+                <div class="col-xs-12 col-sm-offset-1 col-sm-10 col-md-offset-2 col-md-8">
+                    <p>
+                        Du hast in diesem Spieldurchlauf <span class="game-finish__game-points">@GameData.getPoints_game</span>
+                        Punkte erreicht. Sehr gut!<br>
+                        Insgesamt hast Du jetzt <span class="game-finish__user-points">@User.getPoints_overall</span>
+                        Punkte!
+                    </p>
+                    @if(OldRank.getRank_id != NewRank.getRank_id) {
+                        <p>
+                            Glückwunsch, damit hast Du den Rang <span class="game-finish__new-rank">@NewRank.getName_thisRank</span>
+                            erreicht.<br>
+                            Übe fleißig weiter und Du wirst irgendwann <span class="game-finish__next-rank">@NewRank.getName_nextRank</span>
+                            !
+                        </p>
+                    }
+                    <button id="newGame" type="button" class="button-cancer-default">Noch mal!</button>
+                    <button id="toHighscore" type="button" class="button-cancer-default">Highscore</button>
+                </div>
+            </div>
+        </div>
+    } {
+        <script src="@routes.Assets.versioned("javascripts/game.js")" type="text/javascript"></script>
+    }

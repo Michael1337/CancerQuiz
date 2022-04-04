@@ -1,0 +1,20 @@
+@main_logged_in("CancerQuiz: Spiel") {
+    <div class="container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>Das Spiel</h1>
+                <p>Hier kannst Du das Spiel beginnen, das Dir auf verschiedene Arten etwas über
+                    <br>Krebsforschung, -arten und -behandlung beibringen will.<p>
+                <p>Das Spiel ist ist sechs Etappen unterteilt. Dabei gibt es drei Quizrunden mit jeweils zehn Fragen, die sich um eines dieser Themen drehen.
+                    <br>Nach jeder Quizrunde folgt ein Minispiel, mit dem Du Deine zuvor erreichten Punkte verbessern kannst.<p>
+                <p>Die Minispiele multiplizieren die Punkte der letzten Quizrunde mit einem Faktor zwischen 1 und 2. Gut sein lohnt sich also!
+                    <br>Beachte aber dabei, dass Du eine Etappe zu Ende spielen musst, damit Dein Fortschritt auch gespeichert wird.<p>
+                <p>Mit einem Klick auf "Start!" beginnst Du das Spiel. Viel Spaß!</p>
+                <button id="startGame" type="button" class="button-cancer-default">Start!</button>
+                @helper.CSRF.formField
+            </div>
+        </div>
+    </div>
+} {
+    <script src="@routes.Assets.versioned("javascripts/game.js")" type="text/javascript"></script>
+}

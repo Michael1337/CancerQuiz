@@ -1,0 +1,53 @@
+@import java.time.format.DateTimeFormatter
+@(User: model.db.UserFactory#User, Rank: model.db.RankFactory#Rank, GameStats: model.game.GameStatsFactory#GameStatsGroup)
+@main_logged_in("CancerQuiz: Anderer Nutzer") {
+    <div class="container-main">
+        <div class="row">
+            <div class="col-xs-12">
+                <h1>@User.getName's Profil</h1>
+                <div>
+                    <form class="message-body__form" method="post" action="@routes.MessagesController.newMessageWithData()">
+                        <input type="hidden" name="receiver_id" value="@User.getUser_id">
+                        <input type="hidden" name="title" value="">
+                        <input type="hidden" name="text" value="">
+
+                        <button type="submit" id="sendToFriend" class="button-cancer-default">
+                            <span class="glyphicon glyphicon-pencil"></span> Nachricht schreiben
+                        </button>
+                        @helper.CSRF.formField
+                    </form>
+                    <br>
+                    <div class="row">
+                        <div class="profile_content col-sm-offset-4 col-sm-2">
+                            <h3 class="h3NoMarginTop">@User.getName's Rang</h3><br><br><br>
+                            <p> <span class = "glyphicon glyphicon-education"></span> @Rank.getName_thisRank</p>
+                            <p> <span class = "glyphicon glyphicon-stats"></span> @User.getPoints_overall Rangpunkte</p>
+                        </div>
+
+                        <div class = "profile_content col-sm-2">
+                            <h3 class="h3NoMarginTop">@User.getName's Statistik</h3><br><br>
+                            @if(GameStats == null) {
+                                <p>@User.getName hat noch kein Spiel vollständig gespielt.</p>
+                            } else {
+                                <p><span class = "glyphicon glyphicon-knight"></span> @GameStats.getCount Spiel(e)</p>
+                                <p><span class = "glyphicon glyphicon-ban-circle"></span>
+                                    @String.format("%.2f".format(GameStats.getAverage)) Punkte im Durchschnitt</p>
+                                <p><span class = "glyphicon glyphicon-circle-arrow-up"></span>
+                                    @GameStats.getGameMostPoints.getPoints Punkte als Rekord <br>
+                                    (am @GameStats.getGameMostPoints.getDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")))</p>
+                            }
+                        </div>
+                    </div>
+                    <br>
+
+                </div>
+                @helper.CSRF.formField
+                <button class="button-cancer-default warnButton" id="deleteFriend" data-userid="@User.getUser_id">
+                    <span class="glyphicon glyphicon-trash"></span> Als Freund/-in entfernen
+                </button>
+            </div>
+        </div>
+    </div>
+} {
+    <script src="@routes.Assets.versioned("javascripts/friends.js")" type="text/javascript"></script>
+}
